@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Costfy: Budget Tracker</string>
+    <string-array name="transactiontype">
+    <item>Income</item>
+        <item>Expense</item>
+    </string-array >
 </resources>
