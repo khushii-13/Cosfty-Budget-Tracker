@@ -134,6 +134,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginTop="10dp"
             android:src="@drawable/ic_add"
+
             android:backgroundTint="@color/red"
             app:tint="@color/white"
             app:borderWidth="0dp"

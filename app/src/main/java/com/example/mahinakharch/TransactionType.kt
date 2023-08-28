@@ -1,37 +1,36 @@
 package com.example.mahinakharch
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.Toast
+import android.widget.*
 
 class TransactionType : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
-    val spinnerselector= resources.getStringArray(R.array.transactiontype)
+    val transactiontype= arrayOf("Income","Expense")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_transaction_type)
+
+
         val spinner=findViewById<Spinner>(R.id.transactiontypeseclector)
-        if (spinner != null) {
-            val adapter = ArrayAdapter(this,
-                android.R.layout.simple_spinner_item, spinnerselector)
-            spinner.adapter = adapter
+        val arrayadapter= ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,transactiontype)
+        spinner.adapter=arrayadapter
+        spinner.onItemSelectedListener=object:AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
 
-            spinner.onItemSelectedListener = object :
-                AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>,
-                                            view: View, position: Int, id: Long) {
-                    val text: String = parent?.getItemAtPosition(position).toString()
-                }
-
-                override fun onNothingSelected(parent: AdapterView<*>) {
-                }
-                }
+                 val text: String = parent?.getString(p2).toString()
+                 Toast.makeText(applicationContext,"Selected item "+ transactiontype[p2],Toast.LENGTH_SHORT).show()
             }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
         }
+
+    }
 }
