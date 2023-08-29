@@ -9,7 +9,7 @@ import android.widget.*
 
 class TransactionType : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
-    val transactiontype= arrayOf("Income","Expense")
+    val transactiontype= arrayOf("Transaction type","Income","Expense")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,12 +22,24 @@ class TransactionType : AppCompatActivity() {
         spinner.onItemSelectedListener=object:AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
 
-                 val text: String = parent?.getString(p2).toString()
-                 Toast.makeText(applicationContext,"Selected item "+ transactiontype[p2],Toast.LENGTH_SHORT).show()
+                 val text: String = transactiontype[p2]
+                val i:Intent
+                if(transactiontype[p2]=="Transaction type"){
+                    return
+                }
+                if(text=="Income"){
+                    intent = Intent(this@TransactionType, AddTransactionActivity::class.java)
+                    startActivity(intent)
+                }
+                if(text=="Expense"){
+                    intent = Intent(this@TransactionType, AddTransactionActivity::class.java)
+                    startActivity(intent)
+                }
+
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("Not yet implemented")
+               return
             }
 
         }
