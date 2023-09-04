@@ -15,6 +15,12 @@
         android:theme="@style/Theme.Mahinakharch"
         tools:targetApi="31">
         <activity
+            android:name=".temp"
+            android:exported="false" />
+        <activity
+            android:name=".temporary"
+            android:exported="false" />
+        <activity
             android:name=".AddTransactionActivity"
             android:exported="false" />
         <activity

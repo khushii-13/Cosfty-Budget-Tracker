@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".AddTransactionActivity">
 
-
     <ImageButton
         android:id="@+id/closeBtn"
         android:layout_width="34dp"
@@ -15,14 +14,18 @@
         android:background="@drawable/close_bg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout"
+        android:layout_width="380dp"
+        android:layout_height="299dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.498">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/labelLayout"
@@ -30,7 +33,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
+            android:outlineSpotShadowColor="@color/blue2"
+            app:boxStrokeColor="@color/blue2"
             android:hint="Label"
+            app:hintTextColor="@color/blue2"
             app:errorEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -38,10 +44,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/label_selector"
+                android:drawableLeft="@drawable/label_selector"
                 android:drawablePadding="12dp"
-                android:maxLines="1"
                 android:inputType="text"
-                android:drawableLeft="@drawable/label_selector" />
+                android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -51,46 +57,54 @@
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
             android:hint="Amount"
+            android:focusable="true"
+            android:outlineSpotShadowColor="@color/blue2"
+            app:boxStrokeColor="@color/blue2"
+            app:hintTextColor="@color/blue2"
             app:errorEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/amountInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
                 android:drawableStart="@drawable/money_selector"
+                android:drawableLeft="@drawable/money_selector"
                 android:drawablePadding="12dp"
-                android:maxLines="1"
                 android:inputType="numberDecimal|numberSigned"
-                android:drawableLeft="@drawable/money_selector" />
+                android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
+
+        <EditText
+            android:id="@+id/idEdtDate"
+            android:layout_width="match_parent"
+            android:layout_height="94dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:outlineSpotShadowColor="@color/blue2"
+            android:shadowColor="@color/blue2"
+            android:outlineAmbientShadowColor="@color/blue2"
+            android:layout_marginBottom="96dp"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="true"
+            android:focusableInTouchMode="false"
+            android:hint="       🗓️Enter date" />
 
 
     </LinearLayout>
 
     <Button
-        android:id="@+id/datepick"
-        android:layout_width="384dp"
-        android:layout_height="68dp"
-        android:backgroundTint="@color/grey"
-        android:padding="12dp"
-        android:text="Select date"
-        android:textAlignment="textStart"
-        android:textColor="@android:color/black"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="13dp"
-        tools:layout_editor_absoluteY="454dp" />
-
-    <Button
         android:id="@+id/addTransactionBtn"
-        android:layout_width="379dp"
-        android:layout_height="66dp"
+        android:layout_width="363dp"
+        android:layout_height="63dp"
+        android:backgroundTint="@color/blue"
         android:padding="12dp"
         android:text="Add transaction"
-        android:backgroundTint="@color/blue"
-        android:textSize="20dp"
         android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.551"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="12dp"
-        tools:layout_editor_absoluteY="594dp" />
-
+        tools:layout_editor_absoluteX="31dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
