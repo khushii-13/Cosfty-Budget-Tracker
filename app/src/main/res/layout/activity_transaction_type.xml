@@ -6,6 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".TransactionType">
 
+    <ImageButton
+        android:id="@+id/closespinnerBtn"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_margin="12dp"
+        android:background="@drawable/close_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <Spinner
         android:id="@+id/transactiontypeseclector"
         android:layout_width="255dp"

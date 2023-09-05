@@ -6,17 +6,19 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
+import com.example.mahinakharch.R.*
 
 class TransactionType : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
     val transactiontype= arrayOf("Transaction type","Income","Expense")
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_transaction_type)
+        setContentView(layout.activity_transaction_type)
 
 
-        val spinner=findViewById<Spinner>(R.id.transactiontypeseclector)
+        val spinner=findViewById<Spinner>(id.transactiontypeseclector)
         val arrayadapter= ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,transactiontype)
         spinner.adapter=arrayadapter
         spinner.onItemSelectedListener=object:AdapterView.OnItemSelectedListener{
@@ -42,6 +44,10 @@ class TransactionType : AppCompatActivity() {
                return
             }
 
+        }
+        val closebtn=findViewById<ImageButton>(R.id.closespinnerBtn)
+        closebtn.setOnClickListener {
+            finish()
         }
 
     }

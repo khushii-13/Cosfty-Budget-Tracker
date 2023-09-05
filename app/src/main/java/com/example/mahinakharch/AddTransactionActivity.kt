@@ -9,10 +9,16 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.*
 import androidx.annotation.RequiresApi
+import androidx.core.widget.addTextChangedListener
+import androidx.room.Room
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.util.*
- class AddTransactionActivity : AppCompatActivity() {
+class AddTransactionActivity : AppCompatActivity() {
 
     private val calendar = Calendar.getInstance()
     private val formatter = SimpleDateFormat("MMMM d, yyyy hh:mm:ss a", Locale.US)
@@ -22,7 +28,9 @@ import java.util.*
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_addtransaction)
 
-       val  dateEdt = findViewById<EditText>(R.id.idEdtDate)
+        var mydate="1/1/2000"
+
+        val  dateEdt = findViewById<EditText>(R.id.idEdtDate)
 
         dateEdt.setOnClickListener {
 
@@ -42,6 +50,7 @@ import java.util.*
 
                     val dat = (dayOfMonth.toString() + "-" + (monthOfYear + 1) + "-" + year)
                     dateEdt.setText("      "+dat)
+                    mydate=dat
                 },
 
                 year,
@@ -52,6 +61,61 @@ import java.util.*
             datePickerDialog.show()
         }
 
+
+        val labelLayout=findViewById<TextInputLayout>(R.id.labelLayout)
+
+        val labelInput=findViewById<TextInputEditText>(R.id.labelInput)
+        labelInput.addTextChangedListener {
+            if(it!!.count() > 0)
+                labelLayout.error = null
+        }
+
+        val amountInput=findViewById<TextInputEditText>(R.id.amountInput)
+        val amountLayout=findViewById<TextInputLayout>(R.id.amountLayout)
+        amountInput.addTextChangedListener {
+
+            if(it!!.count() > 0)
+                amountLayout.error = null
+        }
+
+        val addTransactionBtn=findViewById<Button>(R.id.addTransactionBtn)
+       // val descriptionInput=findViewById<TextInputEditText>(R.id.descriptionInput)
+        addTransactionBtn.setOnClickListener {
+            val label = labelInput.text.toString()
+
+           val date= mydate
+            val amount = amountInput.text.toString().toDoubleOrNull()
+
+            if(label.isEmpty())
+                labelLayout.error = "Please enter a valid label"
+
+            else if(amount == null)
+                amountLayout.error = "Please enter a valid amount"
+            else {
+//                val transaction  =Transaction(0, label, amount, date)
+//                insert(transaction)
+            }
+
+        }
+
+        val closeBtn=findViewById<ImageButton>(R.id.closeBtn)
+        closeBtn.setOnClickListener {
+            finish()
+        }
     }
 
+
+    private fun insert(transaction: Transaction){
+        val db = Room.databaseBuilder(this,
+            AppDatabase::class.java,
+            "transactions").build()
+
+        GlobalScope.launch {
+            db.transactionDao().insertAll(transaction)
+            finish()
+        }
+    }
+
+
 }
+
